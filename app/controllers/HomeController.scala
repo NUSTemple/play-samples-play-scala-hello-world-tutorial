@@ -65,4 +65,10 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
     Ok(lat)
   }
 
+  def departments():Action[AnyContent] = Action {
+
+
+    Ok("")
+  }
+
 }
