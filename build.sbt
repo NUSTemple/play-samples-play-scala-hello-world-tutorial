@@ -8,7 +8,7 @@ lazy val root = (project in file("."))
     libraryDependencies ++= Seq(
       guice,
       jdbc,
-      "mysql" % "mysql-connector-java" % "5.1.41",
+      "mysql" % "mysql-connector-java" % "8.0.19",
       "com.typesafe.play" %% "play-slick" % "4.0.2",
       "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test
     ),

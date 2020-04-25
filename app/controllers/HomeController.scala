@@ -1,15 +1,20 @@
 package controllers
 
 import javax.inject._
-import play.api._
 import play.api.mvc._
 import play.api.libs.json._
+import services._
+
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.{Await, Future}
+import scala.concurrent.duration._
+
 /**
  * This controller creates an `Action` to handle HTTP requests to the
  * application's home page.
  */
 @Singleton
-class HomeController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
+class HomeController @Inject()(cc: ControllerComponents, departmentService: DepartmentService) extends AbstractController(cc) {
 
   /**
    * Create an Action to render an HTML page.
@@ -65,10 +70,17 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
     Ok(lat)
   }
 
-  def departments():Action[AnyContent] = Action {
+  def getDepartment(id:String) = Action.async { implicit request: Request[AnyContent] =>
+    departmentService.getDepartment(id) map { res =>
+      Ok(res.mkString(""))
+    }
+  }
 
 
-    Ok("")
+  def listAll() = Action.async { implicit request: Request[AnyContent] =>
+    departmentService.listAllDepartments map { res =>
+      Ok(res.toList.mkString(""))
+    }
   }
 
 }
