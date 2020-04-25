@@ -4,6 +4,7 @@ import javax.inject._
 import play.api.mvc._
 import play.api.libs.json._
 import services._
+import models._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.{Await, Future}
@@ -72,14 +73,17 @@ class HomeController @Inject()(cc: ControllerComponents, departmentService: Depa
 
   def getDepartment(id:String) = Action.async { implicit request: Request[AnyContent] =>
     departmentService.getDepartment(id) map { res =>
-      Ok(res.mkString(""))
+      implicit val resFormat: OWrites[Department] = Json.writes[Department]
+      Ok(Json.toJson(res))
     }
   }
 
 
   def listAll() = Action.async { implicit request: Request[AnyContent] =>
     departmentService.listAllDepartments map { res =>
-      Ok(res.toList.mkString(""))
+
+      implicit val resFormat: OWrites[Department] = Json.writes[Department]
+      Ok(Json.toJson(res))
     }
   }
 
