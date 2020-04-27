@@ -8,9 +8,9 @@ import slick.lifted.ProvenShape
 
 import scala.concurrent.{ExecutionContext, Future}
 
-case class Department( dept_no: String,dept_name: String)
+case class Department(dept_no: String,dept_name: String)
 
-class DepartmentsTableDef(tag: Tag) extends Table[Department](tag, "departments") {
+class DepartmentsTable(tag: Tag) extends Table[Department](tag, "departments") {
 
   def deptNo = column[String]("dept_no", O.PrimaryKey)
   def deptName= column[String]("dept_name")
@@ -25,7 +25,7 @@ class Departments @Inject() (protected val dbConfigProvider: DatabaseConfigProvi
   // the HasDatabaseConfigProvider trait gives access to the
   // dbConfig object that we need to run the slick queries
 
-  val departments = TableQuery[DepartmentsTableDef]
+  val departments = TableQuery[DepartmentsTable]
 
   def get(id: String): Future[Option[Department]] = {
     dbConfig.db.run(departments.filter(_.deptNo === id).result.headOption)
