@@ -6,9 +6,10 @@
 # An example controller showing a sample home page
 GET     /                                   controllers.HomeController.index
 GET     /hello                              controllers.HomeController.hello(name: String)
-GET     /json                               controllers.HomeController.jsonReturnTest
-GET     /listAll                            controllers.HomeController.listAll
-GET     /department/:id                     controllers.HomeController.getDepartment(id:String)
+GET     /listAll                            controllers.DepartmentController.listAll
+GET     /department/:id                     controllers.DepartmentController.getDepartment(id:String)
+GET     /employee/:id                       controllers.EmployeeController.getEmployee(id:Int)
+GET     /manager/:id                        controllers.DeptManagerController.getDeptManager(id:Int)
 
 
 # Map static resources from the /public folder to the /assets URL path

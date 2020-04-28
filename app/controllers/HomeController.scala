@@ -6,16 +6,13 @@ import play.api.libs.json._
 import services._
 import models._
 
-import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.{Await, Future}
-import scala.concurrent.duration._
 
 /**
  * This controller creates an `Action` to handle HTTP requests to the
  * application's home page.
  */
 @Singleton
-class HomeController @Inject()(cc: ControllerComponents, departmentService: DepartmentService) extends AbstractController(cc) {
+class HomeController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
 
   /**
    * Create an Action to render an HTML page.
@@ -46,45 +43,6 @@ class HomeController @Inject()(cc: ControllerComponents, departmentService: Depa
     Ok(json)
   }
 
-  def jsonReturnTest(): Action[AnyContent] = Action {
 
-    val json: JsValue = Json.parse(
-      """
-  {
-    "name" : "Watership Down",
-    "location" : {
-      "lat" : 51.235685,
-      "long" : -1.309197
-    },
-    "residents" : [ {
-      "name" : "Fiver",
-      "age" : 4,
-      "role" : null
-    }, {
-      "name" : "Bigwig",
-      "age" : 6,
-      "role" : "Owsla"
-    } ]
-  }
-  """)
-    val lat = (json \ "residents").get
-    Ok(lat)
-  }
-
-  def getDepartment(id:String) = Action.async { implicit request: Request[AnyContent] =>
-    departmentService.getDepartment(id) map { res =>
-      implicit val resFormat: OWrites[Department] = Json.writes[Department]
-      Ok(Json.toJson(res))
-    }
-  }
-
-
-  def listAll() = Action.async { implicit request: Request[AnyContent] =>
-    departmentService.listAllDepartments map { res =>
-
-      implicit val resFormat: OWrites[Department] = Json.writes[Department]
-      Ok(Json.toJson(res))
-    }
-  }
 
 }
