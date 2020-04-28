@@ -53,7 +53,7 @@ class DeptManagers @Inject() (protected val dbConfigProvider: DatabaseConfigProv
         .on(_._1.deptNo === _.deptNo)
       .filter(_._1._2.empNo === id).map{
       case ((t, s),a) =>
-        ((s.empNo, s.firstName, a.deptName, t.toDate.asColumnOf[String], t.fromDate.asColumnOf[String])
+        ((s.empNo, s.firstName, a.deptName, t.fromDate.asColumnOf[String], t.toDate.asColumnOf[String])
           <> (DeptManagerJoin.tupled, DeptManagerJoin.unapply))
     }.result.headOption)
   }
