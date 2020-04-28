@@ -15,13 +15,12 @@ During the exploration of Play Framework, I tried to follow Play Framework [Hell
 2. No clear path to explain how should I do for next step for my use case.
 3. Online 3rd party doc are either outdated or too complicated
 
-
 ## Overall notes setup
 For this series of notes, I will follow below sequence to complete the tutorial:
-1. Setup a Hello-World project in Play Framework (Part 1)
-2. Mysql setup and Introduction to Slick (Part 2)
-3. Try Play-Slick in Play Framework to query information from Mysql (Part 3)
-4. Advanced version of Slick to perform the join between tables (Part 4)
+1. Setup a Hello-World project in Play Framework [Part1-1](/doc/2.%20Play%20Framework%20Tutorial%20-%20Part%201-1%20-%20Hello%20World.md) [Part1-2](/doc/3.%20Play%20Framework%20Tutorial%20-%20Part%201-2%20-%20Hello%20World.md)
+2. Mysql setup and Introduction to Slick [Part2](/doc/4.%20Play%20Framework%20Tutorial%20-%20Part%202%20-%20Mysql%20Setup.md)
+3. Try Play-Slick in Play Framework to query information from Mysql [Part 3](/doc/5.%20Play%20Framework%20Tutorial%20-%20Part%203%20-%20Play-Slick%20Testing.md)
+4. Advanced version of Slick to perform the join between tables [Part 4](/doc/6.%20Play%20Framework%20Tutorial%20-%20Part%204%20-%20Play-Slick%20Join%20Query.md)
 
 
 ## References:
